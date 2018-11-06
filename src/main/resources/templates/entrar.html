@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+<head th:replace="fragments/estilos :: head"></head>
+
+<body class="hold-transition bg-img" style="background-image: url(images/gallery/full/dentista_background.jpg)" data-overlay="4">
+	
+	<div class="container h-p100">
+		<div class="row align-items-center justify-content-md-center h-p100">			
+			<div class="col-12">
+				<div class="row no-gutters justify-content-md-center">
+					<div class="col-lg-4">
+						<div class="content-top-agile h-p100">
+							<h2>Nucleo de Diagnostico Bucal</h2>
+							<p class="text-white">Entre para iniciar a sua sessao</p>
+						</div>				
+					</div>
+					<div class="col-lg-5 col-md-5 col-12">
+						<div class="p-40 bg-white content-bottom h-p100">
+							<div th:if="${param.error}">
+								<div class="alert alert-info">Usuario invalido!</div>
+							</div>
+							<form action="/entrar" method="post" class="form-element">
+								<div class="form-group">
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text bg-info border-info"><i class="ti-user"></i></span>
+										</div>
+										<input type="text" name="username" class="form-control pl-15" placeholder="Usuario">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text bg-info border-info"><i class="ti-lock"></i></span>
+										</div>
+										<input type="password" name="password" class="form-control pl-15" placeholder="Senha">
+									</div>
+								</div>
+								  <div class="row">
+									<div class="col-6">
+									  <div class="checkbox">
+										<input type="checkbox" id="basic_checkbox_1" >
+										<label for="basic_checkbox_1">Lembrar-me</label>
+									  </div>
+									</div>
+									<!-- /.col -->
+									<div class="col-6">
+									 	<div class="fog-pwd text-right">
+											<a href="#" id="sa-title"><i class="ion ion-locked"></i> Esqueceu a senha?</a><br>
+										</div>
+									</div>
+									<!-- /.col -->
+									<div class="col-12 text-center">
+									  <button type="submit" class="btn btn-info btn-block margin-top-10">ENTRAR</button>
+									</div>
+									<!-- /.col -->
+								  </div>
+								  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							</form>		
+
+							<div class="text-center">
+								<p class="mt-15 mb-0">Nao possui uma conta? <a href="/registrar" class="text-info ml-5">Registrar</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- jQuery 3 -->
+	<script src="assets/vendor_components/jquery-3.3.1/jquery-3.3.1.js"></script>
+	
+	<!-- popper -->
+	<script src="assets/vendor_components/popper/dist/popper.min.js"></script>
+	
+	<!-- Bootstrap 4.0-->
+	<script src="assets/vendor_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	
+	<!-- Sweet-Alert  -->
+    <script src="assets/vendor_components/sweetalert/sweetalert.min.js"></script>
+    <script src="assets/vendor_components/sweetalert/jquery.sweet-alert.custom.js"></script>
+
+</body>
+</html>

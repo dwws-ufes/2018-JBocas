@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/estilos :: head"></head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<header th:replace="fragments/header :: header"></header>
+	<aside class="main-sidebar">
+		<section th:replace="fragments/sidebar :: sidebar"></section>
+	</aside>
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="mr-auto">
+					<h3 class="page-title">Painel de Controle</h3>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i
+										class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item" aria-current="page">Painel</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<section class="content">
+			<div class="row">
+				<div class="col-12">
+					<div class="box">
+						<div class="box-header with-border">
+							<h3 class="box-title">Pacientes Cadastrados</h3>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<div class="table-responsive">
+								<table id="pacientes" class="table table-bordered table-striped"
+									style="width: 100%">
+									<thead>
+										<tr>
+											<th>Nome</th>
+											<th>Nascimento</th>
+											<th>Sexo</th>
+											<th>Estado</th>
+											<th>Saude Geral</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="paciente : ${pacientes}">
+											<td th:text="${paciente.nome}"></td>
+											<td th:text="${paciente.nascimento}"></td>
+											<td th:text="${paciente.sexo}"></td>
+											<td th:text="${paciente.estado}"></td>
+											<td th:text="${paciente.saudeGeral}"></td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Nome</th>
+											<th>Nascimento</th>
+											<th>Sexo</th>
+											<th>Estado</th>
+											<th>Saude Geral</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<span th:insert="fragments/controlSidebar"></span>
+	<span th:insert="fragments/estilos :: scripts"></span>
+</body>
+
+</html>

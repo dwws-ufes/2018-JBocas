@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/estilos :: head"></head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<header th:replace="fragments/header :: header"></header>
+	<aside class="main-sidebar">
+		<section th:replace="fragments/sidebar :: sidebar"></section>
+	</aside>
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="mr-auto">
+					<h3 class="page-title">Painel de Controle</h3>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i
+										class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item" aria-current="page">Painel</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Main content -->
+		<section class="content">
+			<div class="row">
+				<div class="col-12">
+					<div class="box">
+						<div class="box-header">
+							<h4 class="box-title">
+								Editar Pacientes
+							</h4>
+							<h6 class="subtitle">Apenas clique no campo a ser editado e pressione enter para confirmar</h6>
+						</div>
+
+						<div class="box-body">
+							<div class="table-responsive">
+								<table id="example1"
+									class="table table-bordered table-separated">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Position</th>
+											<th>Office</th>
+											<th>Age</th>
+											<th>Start date</th>
+											<th>Salary</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Tiger Nixon</td>
+											<td>System Architect</td>
+											<td>Edinburgh</td>
+											<td>61</td>
+											<td>2011/04/25</td>
+											<td>$320,800</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Name</th>
+											<th>Position</th>
+											<th>Office</th>
+											<th>Age</th>
+											<th>Start date</th>
+											<th>Salary</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row"></div>
+
+		</section>
+		<!-- /.content -->
+	</div>
+	<span th:insert="fragments/controlSidebar"></span>
+	<span th:insert="fragments/estilos :: scripts"></span>
+</body>
+
+</html>

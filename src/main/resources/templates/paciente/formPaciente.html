@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/estilos :: head"></head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<header th:replace="fragments/header :: header"></header>
+	<aside class="main-sidebar">
+	<section th:replace="fragments/sidebar :: sidebar">...</section>
+	</aside>
+	<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="mr-auto">
+					<h3 class="page-title">Cadastrar Paciente</h3>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i
+										class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item" aria-current="page">Painel</li>
+								<li class="breadcrumb-item active" aria-current="page">Cadastrar Paciente</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- Main content -->
+    <section class="content">
+     
+     <!-- Basic Forms -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h4 class="box-title">Cadastro</h4>
+          <h6 class="box-subtitle">Cadastro de um novo paciente</h6>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col">
+            	<form novalidate method="post">
+				  <div class="row">
+					<div class="col-12">						
+						<div class="form-group">
+							<h5>Nome <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" name="nome" class="form-control" required data-validation-required-message="This field is required"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Nascimento <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="date" name="nascimento" class="form-control" required data-validation-required-message="This field is required"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Estado <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<select name="estado" id="select" required class="form-control">
+									<option value="">Selecione o Estado</option>
+									<option value="ES">ES</option>
+									<option value="SP">SP</option>
+									<option value="RJ">RJ</option>
+									<option value="MG">MG</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<h5>Historia da saude geral <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<textarea name="saudeGeral" id="textarea" class="form-control" required placeholder="Textarea text"></textarea>
+							</div>
+						</div>
+        			</div>
+        		  </div>
+						<div class="form-group">
+							<h5>Sexo <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<fieldset>
+									<input name="sexo" type="radio" id="sexoF" value="f" required>
+									<label for="sexoF">F</label>
+									<input name="sexo" type="radio" id="sexoM" value="m" required>
+									<label for="sexoM">M</label>
+								</fieldset>
+							</div>
+						</div>
+					<div class="text-xs-right">
+						<button type="submit" class="btn btn-info">Enviar</button>
+					</div>
+				</form>
+            	
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+      
+    </section>
+    <!-- /.content -->
+	</div>
+	<span th:insert="fragments/controlSidebar"></span>
+	<span th:insert="fragments/estilos :: scripts"></span>
+</body>
+
+</html>
