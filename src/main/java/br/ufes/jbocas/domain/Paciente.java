@@ -1,7 +1,7 @@
 package br.ufes.jbocas.domain;
 
-import java.sql.Date;
-import java.util.List;
+import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -97,10 +97,10 @@ public class Paciente {
 	private String projDisci;
 	@OneToMany	(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn (name="pacienteId")
-	private List<Atendimento> atendimentos;
+	private Set<Atendimento> atendimentos;
 	@OneToMany	(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn (name="pacienteId")
-	private List<DoencasSistemicas> doencasSistemicas;
+	private Set<DoencasSistemicas> doencasSistemicas;
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "Brazil/East")
 	private Date ultimaRevisao;

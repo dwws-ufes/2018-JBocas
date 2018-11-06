@@ -6,8 +6,8 @@
       <!-- sidebar menu-->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="user-profile treeview">
-          <a href="/">
-			<img src="images/avatar/7.jpg" alt="user">
+          <a href="/" th:href="@{/}">
+			<img src="images/avatar/7.jpg" th:src="@{images/avatar/7.jpg}" alt="user">
               <span>
 				<span class="d-block font-weight-600 font-size-16">Gabriel</span>
 				<span class="email-id">bielgiorisatto@gmail.com</span>
@@ -17,8 +17,8 @@
             </span>
           </a>
 		  <ul class="treeview-menu">
-            <li><a href="javascript:void()"><i class="fa fa-user mr-5"></i>Perfil</a></li>
- 		  	<li><a href="javascript:void()"><i class="fa fa-cog mr-5"></i>Configuracoes</a></li>
+            <li><a th:href="@{#}"><i class="fa fa-user mr-5"></i>Perfil</a></li>
+ 		  	<li><a th:href="@{#}"><i class="fa fa-cog mr-5"></i>Configuracoes</a></li>
       		<li><a th:href="@{/logout}"><i class="fa fa-power-off mr-5"></i>Sair</a></li>
       		<!-- (__${_csrf.parameterName}__=${_csrf.token}) -->
 			<!-- <li>
@@ -29,19 +29,32 @@
 	      	</li> -->
           </ul>
         </li>
-        <li class="header nav-small-cap"><i class="mdi mdi-drag-horizontal mr-5"></i>PACIENTES</li>
-		
+        
+        <li class="header nav-small-cap"><i class="mdi mdi-drag-horizontal mr-5"></i>GERENCIA</li>
 		<li class="treeview active">
-          <a href="#">
-            <i class="mdi mdi-view-dashboard"></i>
-            <span>Painel</span>
+          <a th:href="@{#}">
+            <i class="mdi mdi-receipt"></i>
+            <span>Atendimentos</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li th:classappend="${isAdmin} ? adminclass : userclass"><a href="/cadastrarPaciente"><i class="mdi mdi-toggle-switch-off"></i>Cadastrar Paciente</a></li>
-            <li th:classappend="${isAdmin} ? adminclass : userclass"><a href="/visualizarPacientes"><i class="mdi mdi-toggle-switch-off"></i>Visualizar Pacientes</a></li>
+            <li><a th:href="@{atendimento/paciente}"><i class="mdi mdi-toggle-switch-off"></i>Novo Atendimento</a></li>
+            <li><a th:href="@{#}"><i class="mdi mdi-toggle-switch-off"></i>Visualizar Atendimentos</a></li>
+          </ul>
+        </li>  
+		<li class="treeview">
+          <a th:href="@{#}">
+            <i class="fa fa-users"></i>
+            <span>Pacientes</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a th:href="@{/}"><i class="mdi mdi-toggle-switch-off"></i>Cadastrar Paciente</a></li>
+            <li><a th:href="@{/visualizarPacientes}"><i class="mdi mdi-toggle-switch-off"></i>Visualizar Pacientes</a></li>
           </ul>
         </li>  
       </ul>

@@ -1,17 +1,11 @@
 package br.ufes.jbocas.domain;
 
 import java.util.Date;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,22 +17,23 @@ import lombok.Setter;
 
 @Getter @Setter
 @Entity
-@Table(name = "atendimento")
-public class Atendimento {
-	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Table(name = "laudo")
+public class Laudo {
+	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column
-	private String clinica;
+	private String numero;
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "Brazil/East")
-	private Date data;
+	private Date entrada;
 	@Column
-	private String local;
-	@OneToMany	(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn (name="atendimentoId")
-	private Set<Lesao> lesoes;
-	@OneToMany	(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn (name="atendimentoId")
-	private Set<Requisicao> requisicoes;
-	
+	private String qualidadePeca;
+	@Column
+	private String profissional;
+	@Column
+	private String setor;
+	@Column
+	private String resumoClinico;
 }
