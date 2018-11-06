@@ -23,7 +23,7 @@ public class AtendimentoController {
 		return "index";
 	}
 
-	@RequestMapping(value="atendimento/paciente", method=RequestMethod.GET)
+	@RequestMapping(value="/atendimento/paciente", method=RequestMethod.GET)
 	public String inicioAtendimento(Model model) {
 		model.addAttribute("title", "NDB - Atendimento");
 		return "atendimento/paciente";
