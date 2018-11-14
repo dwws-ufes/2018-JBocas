@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="fragments/estilos :: head">
+<meta charset="utf-8">
+</head>
+
+<body class="hold-transition skin-blue fixed sidebar-mini">
+	<header th:replace="fragments/headerBar :: headerBar"></header>
+	<aside th:replace="fragments/sidebar :: sidebar">...</aside>
+	<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="mr-auto">
+					<h3 class="page-title">Ficha de Atendimento</h3>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i
+										class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item" aria-current="page">Painel</li>
+								<li class="breadcrumb-item active" aria-current="page">Novo Atendimento</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- Main content -->
+    <section class="content">
+		<div class="box">
+			<div class="box-header with-border">
+				<h4 class="box-title">Paciente</h4>
+				<ul class="box-controls pull-right">
+					<li><a class="box-btn-close" href="#"></a></li>
+					<li><a class="box-btn-slide" href="#"></a></li>
+					<li><a class="box-btn-fullscreen" href="#"></a></li>
+				</ul>
+			</div>
+			<!-- /.box-header -->
+			<form class="form" th:object="${paciente}">
+				<div class="box-body">
+					<h4 class="box-title text-info">
+						<i class="ti-user mr-15"></i> Informações Pessoais
+					</h4>
+					<hr class="my-15">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Nome</label> <input type="text" th:field="*{nome}"
+									class="form-control" disabled placeholder="Nome">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>CPF</label> <input type="text" th:field="*{cpf}"
+									class="form-control" disabled placeholder="CPF">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Idade</label> <input type="text" th:field="*{idade}"
+									class="form-control" disabled placeholder="Idade">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>SUS </label> <input type="text" th:field="*{sus}"
+									class="form-control" disabled placeholder="SUS">
+							</div>
+						</div>
+						
+			<!-- 		<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<a th:href="@{/atendimento/paciente(paciente=${paciente.id})}" class="btn btn-info" role="button">Editar Paciente</a>
+							</div>
+						</div>
+					</div> -->
+					</div>
+					<h4 class="box-title text-info">
+						<i class="fa fa-history mr-15"></i> Histórico
+					</h4>
+					<hr class="my-15">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Última Revisão</label> <input type="date" th:field="*{ultimaRevisao}"
+									class="form-control" disabled placeholder="Última Revisão">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Próxima Revisão</label> <input type="date" th:field="*{proxRevisao}"
+									class="form-control" disabled placeholder="Próxima Revisão">
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- /.box -->
+
+			<!-- Basic Forms -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h4 class="box-title">Atendimento</h4>
+          <h6 class="box-subtitle">Atendimento do paciente <span th:text="${paciente.nome}"></span></h6>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col">
+            	<form novalidate method="post" th:action="@{/atendimento/ficha}" th:object=${atendimento}>
+            	<input type="hidden" th:name="paciente" th:value="${paciente.cpf}" />
+            		          	<h4 class="box-title text-info">
+					<i class="fa fa-address-book-o mr-15"></i> Lesões
+				</h4>
+				<hr class="my-15">
+			  <div class="row" id="lesoesFrag">
+					<div class="col-12">
+				<!-- Tabela Lesoes -->
+				<div class="table-responsive">
+					<table th:if="*{lesoes.size()} != 0" class="table product-overview eBtn">
+						<thead>
+							<tr>
+								<th>Imagem</th>
+								<th>Diagnóstico</th>
+								<th>Local</th>
+								<th>Histórico</th>
+								<th>Encaminhamentos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="lesao : *{lesoes}">
+								<td><img src="" alt="Sem imagem" width="80"></td>
+								<td th:text="${lesao.hipoteses}"></td>
+								<td th:text="${lesao.regiao}"></td>
+								<td th:text="${lesao.historico}"></td>
+								<td th:text="${lesao.encaminhamentos}"></td>
+								<!-- <td align="center"><a th:href="@{/atendimento/ficha(paciente=${paciente.cpf}, lesaoId=${lesao.id})}" class="text-danger" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash text-danger"></i></a></td> -->
+							</tr>			
+						</tbody>
+					</table>
+					<h5 th:if="*{lesoes.size()} == 0">Atendimento sem lesões cadastradas</h5>
+					<button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modal-center">
+                		Adicionar Lesão
+              		</button>
+				</div>
+				<!-- Fim tabela lesoes -->
+				</div>
+				</div>
+	        	<h4 class="box-title text-info">
+					<i class="fa fa-file-text mr-15"></i> Informações do Atendimento
+				</h4>
+				<hr class="my-15">
+				  <div class="row">
+					<div class="col-12">		
+						<div class="form-group">
+							<h5>Clinica <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{clinica}" name="clinica" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Data do Atendimento <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="date" th:field="*{dataAtendimento}" name="dataAtendimento" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Local <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{local}" name="local" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Projeto ou Disciplina <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{projDisci}" name="projDisci" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+        			</div>
+        		  </div>
+					<div class="text-xs-right">
+						<button type="submit" class="btn btn-info">Enviar</button>
+					</div>
+				</form>
+				<!-- Modal -->
+				  <div class="modal center-modal fade" data-backdrop="false" id="modal-center" tabindex="-1">
+					  <div class="modal-dialog">
+						<div class="modal-content">
+						  <div class="modal-header">
+							<h5 class="modal-title">Lesão</h5>
+							<button type="button" class="close" data-dismiss="modal">
+							  <span aria-hidden="true">&times;</span>
+							</button>
+						  </div>
+						  <div class="modal-body">
+							<div class="box-body">
+								<h4 class="box-title text-info">
+									<i class="ti-user mr-15"></i> Informações Lesão
+								</h4>
+								<hr class="my-15">
+								<form novalidate method="post" th:action="@{/atendimento/ficha(paciente=${paciente.cpf}, incluirLesao=True)}" th:object=${lesao}>
+								<!-- <input type="hidden" th:name="paciente" th:value="${paciente.cpf}" /> -->
+								<input th:if="${atendimento.id} != null" type="hidden" th:field="${atendimento.id}" />
+								<div class="row">
+									<div class="col-12">
+										<div class="form-group">
+											<h5>Histórico <span class="text-danger">*</span></h5>
+											<div class="controls">
+												<textarea th:field="*{historico}" class="form-control" required data-validation-required-message="Campo obrigatorio"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<h5>Região <span class="text-danger">*</span></h5>
+											<div class="controls">
+												<input type="text" th:field="*{regiao}" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<h5>Hipóteses <span class="text-danger">*</span></h5>
+											<div class="controls">
+												<input type="text" th:field="*{hipoteses}" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12">
+										<div class="form-group">
+											<h5>Encaminhamentos <span class="text-danger">*</span></h5>
+											<div class="controls">
+												<input type="text" th:field="*{encaminhamentos}" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="btn btn-bold btn-pure btn-secondary" data-dismiss="modal">Fechar</button>
+								<button type="submit" class="btn btn-bold btn-pure btn-primary float-right">Salvar</button>
+							</form>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				  <!-- /.modal -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+      
+    </section>
+    <!-- /.content -->
+	</div>
+	<span th:insert="fragments/controlSidebar"></span>
+	<span th:insert="fragments/estilos :: scripts"></span>
+	<!-- <script>
+/* 	$(document).ready(function () {
+	// Attach a submit handler to the form
+	$( "#lesoesFrag" ).submit(function( event ) {
+	 
+	  // Stop form from submitting normally
+	  event.preventDefault();
+	 
+	  // Get some values from elements on the page:
+	  var $form = $( this ),
+	    historico = $form.find( "input[name='historico']" ).val(),
+	    regiao = $form.find( "input[name='regiao']" ).val(),
+	    hipoteses = $form.find( "input[name='hipoteses']" ).val(),
+	    encaminhamentos = $form.find( "input[name='encaminhamentos']" ).val(),
+	    url = $form.attr( "action" );
+	 
+	  // Send the data using post
+	  var posting = $.post( url,
+			  {
+		  historico: historico,
+		  regiao: regiao,
+		  hipoteses: hipoteses,
+		  encaminhamentos: encaminhamentos
+		  }); */
+	 
+	  // Put the results in a div
+ 	  posting.done(function( data ) {
+	    var content = $( data ).find( "#teste" );
+	    $( "#lesoesFrag" ).empty().append( content );
+	  }); 
+	});
+	}
+	</script>
+	 -->
+<!-- 	<script type="text/javascript">
+	$(document).ready(function () {
+		// Attach a submit handler to the form
+		$( "#lesaoForm" ).submit(function( event ) {
+			
+			// Stop form from submitting normally
+		 	event.preventDefault();
+			var lesao = {}
+			lesao["historico"] = $("#historico").val();
+			lesao["regiao"] = $("#regiao").val();
+			lesao["hipoteses[0].hipotese"] = $("#hipoteses[0].hipotese").val();
+			lesao["encaminhamentos"] = $("#encaminhamentos").val();
+			
+			
+			var $form = $( this )
+			$.ajax({
+			    type: "POST",
+			    contentType: "application/json",
+			    url: $form.attr("action"),
+			    data: JSON.stringify(lesao),
+			    dataType: 'json',
+			    cache: false,
+			    timeout: 600000,
+			    success: function (data) {
+			    	$('#lesaoForm').html(json);
+			        console.log("SUCCESS : ", data);
+			    },
+			    error: function (e) {
+			        console.log("ERROR : ", e);
+			    }
+			});
+		});
+	});
+	</script> -->
+</body>
+
+</html>

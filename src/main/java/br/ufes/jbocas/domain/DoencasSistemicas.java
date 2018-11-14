@@ -1,6 +1,5 @@
 package br.ufes.jbocas.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,9 +14,8 @@ import lombok.Setter;
 @Table(name = "doencas_sistemicas")
 public class DoencasSistemicas {
 	@Id
-	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column
+	private Long id;
+	
 	private String nome;
 }

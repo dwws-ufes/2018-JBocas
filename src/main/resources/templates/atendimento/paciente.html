@@ -2,13 +2,13 @@
 <html xmlns:th="http://thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<head th:replace="fragments/estilos :: head"></head>
+<head th:include="fragments/estilos :: head">
+<meta charset="utf-8">
+</head>
 
-<body class="hold-transition skin-blue sidebar-mini">
-	<header th:replace="fragments/header :: header"></header>
-	<aside class="main-sidebar">
-	<section th:replace="fragments/sidebar :: sidebar">...</section>
-	</aside>
+<body class="hold-transition skin-blue fixed sidebar-mini">
+	<header th:replace="fragments/headerBar :: headerBar"></header>
+	<aside th:replace="fragments/sidebar :: sidebar">...</aside>
 	<div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 		<div class="content-header">
@@ -41,43 +41,212 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
         <div class="box-body">
           <div class="row">
             <div class="col">
-            	<form novalidate method="post">
+            	<form novalidate method="post" th:action="@{/atendimento/paciente}" th:object="${pacienteForm}">
 				  <div class="row">
 					<div class="col-12">		
 						<div class="form-group">
 							<h5>CPF <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<input type="text" name="cpf" class="form-control" data-validation-containsnumber-regex="(\d)+" data-validation-containsnumber-message="Apenas numero sao permitidos" required data-validation-required-message="Campo obrigatorio"> </div>
+								<input type="text" th:field="*{cpf}" name="cpf" class="form-control" data-validation-containsnumber-regex="(\d)+" data-validation-containsnumber-message="Apenas numero sao permitidos" required data-validation-required-message="Campo obrigatorio"> </div>
 						</div>
 						<div class="form-group">
-							<h5>Prontuario <span class="text-danger">*</span></h5>
+							<h5>Prontuário <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<input type="text" name="prontuario" class="form-control" data-validation-containsnumber-regex="(\d)+" data-validation-containsnumber-message="Apenas numero sao permitidos" required data-validation-required-message="Campo obrigatorio"> </div>
+								<input type="text" th:field="*{prontuario}" name="prontuario" class="form-control" data-validation-containsnumber-regex="(\d)+" data-validation-containsnumber-message="Apenas numero sao permitidos" required data-validation-required-message="Campo obrigatorio"> </div>
 						</div>			
 						<div class="form-group">
 							<h5>Nome <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<input type="text" name="nome" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+								<input type="text" th:field="*{nome}" name="nome" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
 						</div>
 						<div class="form-group">
 							<h5>SUS <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<input type="text" name="sus" data-validation-containsnumber-regex="(\d)+" data-validation-containsnumber-message="Apenas numero sao permitidos" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+								<input type="text" th:field="*{sus}" name="sus" data-validation-containsnumber-regex="(\d)+" data-validation-containsnumber-message="Apenas numero sao permitidos" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
 						</div>
 						<div class="form-group">
-							<h5>Nome da Mae <span class="text-danger">*</span></h5>
+							<h5>Nome da Mãe <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<input type="text" name="nomeMae" class="form-control" > </div>
+								<input type="text" th:field="*{nomeMae}" name="nomeMae" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Início do Tratamento <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="date" th:field="*{inicioTratamento}" name="inicioTratamento" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
 						</div>
 						<div class="form-group">
 							<h5>Nascimento <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<input type="date" name="nascimento" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+								<input type="date" th:field="*{nascimento}" name="nascimento" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
 						</div>
 						<div class="form-group">
+							<h5>Sexo <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<fieldset>
+									<input th:field="*{sexo}" name="sexo" type="radio" id="sexoF" value="F" required>
+									<label for="sexoF">F</label>
+									<input th:field="*{sexo}" name="sexo" type="radio" id="sexoM" value="M" required>
+									<label for="sexoM">M</label>
+								</fieldset>
+							</div>
+						</div>
+						<div class="form-group">
+							<h5>Cor <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{cor}" name="cor" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Profissão <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{profissao}" name="profissao" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Naturalidade <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{naturalidade}" name="naturalidade" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Escolaridade <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{escolaridade}" name="escolaridade" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Estado Civil <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{estadoCivil}" name="estadoCivil" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Telefone <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{telefone}" name="telefone" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Município <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{municipio}" name="municipio" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>CEP <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{cep}" name="cep" class="form-control" data-validation-containsnumber-regex="(\d)+" data-validation-containsnumber-message="Apenas numero sao permitidos" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Cidade <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{cidade}" name="cidade" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Endereço <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{endereco}" name="endereco" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Fumante <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<fieldset>
+									<input th:field="*{fumante}" name="fumante" type="radio" id="fumaS" value="S" required>
+									<label for="fumaS">Sim</label>
+									<input th:field="*{fumante}" name="fumante" type="radio" id="fumaN" value="N" required>
+									<label for="fumaN">Não</label>
+									<input th:field="*{fumante}" name="fumante" type="radio" id="fumaEX" value="EX" required>
+									<label for="fumaEX">Ex-fumante</label>
+								</fieldset>
+							</div>
+						</div>
+						<div class="form-group">
+							<h5>Frequência de Fumo </h5>
+							<div class="controls">
+								<input type="text" th:field="*{freqFumante}" name="freqFumante" class="form-control" > </div>
+						</div>
+						<div class="form-group">
+							<h5>Tipo de Fumo </h5>
+							<div class="controls">
+								<input type="text" th:field="*{tipoFumante}" name="tipoFumante" class="form-control" > </div>
+						</div>
+						<div class="form-group">
+							<h5>Etilista <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<fieldset>
+									<input th:field="*{etilista}" name="etilista" type="radio" id="etilistaS" value="S" required>
+									<label for="etilistaS">Sim</label>
+									<input th:field="*{etilista}" name="etilista" type="radio" id="etilistaN" value="N" required>
+									<label for="etilistaN">Não</label>
+									<input th:field="*{etilista}" name="etilista" type="radio" id="etilistaEX" value="EX" required>
+									<label for="etilistaEX">Ex-etilista</label>
+								</fieldset>
+							</div>
+						</div>
+						<div class="form-group">
+							<h5>Frequência de Consumo </h5>
+							<div class="controls">
+								<input type="text" th:field="*{freqEtilista}" name="freqEtilista" class="form-control" > </div>
+						</div>
+						<div class="form-group">
+							<h5>Tipo de Bebida </h5>
+							<div class="controls">
+								<input type="text" th:field="*{tipoEtilista}" name="tipoEtilista" class="form-control" > </div>
+						</div>
+						<div class="form-group">
+							<h5>Exposição ao Sol <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{expoSol}" name="expoSol" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Frequência de Exposição <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{freqSol}" name="freqSol" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Câncer Família<span class="text-danger">*</span></h5>
+							<div class="controls">
+								<fieldset>
+									<input th:field="*{cancerFamilia}" name="cancerFamilia" type="radio" id="cancerFamiliaS" value="S" required>
+									<label for="cancerFamiliaS">Sim</label>
+									<input th:field="*{cancerFamilia}" name="cancerFamilia" type="radio" id="cancerFamiliaN" value="N" required>
+									<label for="cancerFamiliaN">Não</label>
+								</fieldset>
+							</div>
+						</div>
+						<div class="form-group">
+							<h5>Região do Câncer </h5>
+							<div class="controls">
+								<input type="text" th:field="*{regiaoCancerFamilia}" name="regiaoCancerFamilia" class="form-control" > </div>
+						</div>
+						<div class="form-group">
+							<h5>Parentesco do Familiar </h5>
+							<div class="controls">
+								<input type="text" th:field="*{parentescoCancerFamilia}" name="parentescoCancerFamilia" class="form-control" > </div>
+						</div>
+						<div class="form-group">
+							<h5>Problemas Cardiovasculares <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:field="*{problemasCardiovasculares}" name="problemasCardiovasculares" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Diabetes <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<fieldset>
+									<input th:field="*{diabetes}" name="diabetes" type="radio" id="diabetesS" value="S" required>
+									<label for="diabetesS">Sim</label>
+									<input th:field="*{diabetes}" name="diabetes" type="radio" id="diabetesN" value="N" required>
+									<label for="diabetesN">Não</label>
+								</fieldset>
+							</div>
+						</div>
+						<div class="form-group">
+							<h5>Última Revisão <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="date" th:field="*{ultimaRevisao}" name="ultimaRevisao" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Próxima Revisão <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="date" th:field="*{proxRevisao}" name="proxRevisao" class="form-control" required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<!-- <div class="form-group">
 							<h5>Estado <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<select name="estado" id="select" required class="form-control">
+								<select th:field="*{estado}" name="estado" id="select" required class="form-control">
 									<option value="">Selecione o Estado</option>
 									<option value="ES">ES</option>
 									<option value="SP">SP</option>
@@ -85,26 +254,15 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 									<option value="MG">MG</option>
 								</select>
 							</div>
-						</div>
-						<div class="form-group">
-							<h5>Historia da saude geral <span class="text-danger">*</span></h5>
+						</div> -->
+						<!-- <div class="form-group">
+							<h5>História da saúde geral <span class="text-danger">*</span></h5>
 							<div class="controls">
-								<textarea name="saudeGeral" id="textarea" class="form-control" required placeholder="Textarea text"></textarea>
+								<textarea th:field="*{saudeGeral}" name="saudeGeral" id="textarea" class="form-control" required placeholder="Textarea text"></textarea>
 							</div>
-						</div>
+						</div> -->
         			</div>
         		  </div>
-						<div class="form-group">
-							<h5>Sexo <span class="text-danger">*</span></h5>
-							<div class="controls">
-								<fieldset>
-									<input name="sexo" type="radio" id="sexoF" value="f" required>
-									<label for="sexoF">F</label>
-									<input name="sexo" type="radio" id="sexoM" value="m" required>
-									<label for="sexoM">M</label>
-								</fieldset>
-							</div>
-						</div>
 					<div class="text-xs-right">
 						<button type="submit" class="btn btn-info">Enviar</button>
 					</div>

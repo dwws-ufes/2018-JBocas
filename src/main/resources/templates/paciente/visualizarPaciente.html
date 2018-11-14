@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="fragments/estilos :: head">
+<meta charset="utf-8">
+</head>
+
+<body class="hold-transition skin-blue fixed sidebar-mini">
+	<header th:replace="fragments/headerBar :: headerBar"></header>
+	<aside th:replace="fragments/sidebar :: sidebar">...</aside>
+	<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="mr-auto">
+					<h3 class="page-title">Ficha de Atendimento</h3>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i
+										class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item" aria-current="page">Painel</li>
+								<li class="breadcrumb-item active" aria-current="page">Novo Atendimento</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- Main content -->
+    <section class="content">
+		<div class="box">
+			<div class="box-header with-border">
+				<h4 class="box-title">Paciente</h4>
+				<ul class="box-controls pull-right">
+					<li><a class="box-btn-slide" href="#"></a></li>
+				</ul>
+			</div>
+			<!-- /.box-header -->
+			<div class="form" th:object="${paciente}">
+				<div class="box-body">
+					<h4 class="box-title text-info">
+						<i class="ti-user mr-15"></i> Informações Pessoais
+					</h4>
+					<hr class="my-15">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Nome</label> <input type="text" th:field="*{nome}"
+									class="form-control" disabled placeholder="Nome">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>CPF</label> <input type="text" th:field="*{cpf}"
+									class="form-control" disabled placeholder="CPF">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Idade</label> <input type="text" th:field="*{idade}"
+									class="form-control" disabled placeholder="Idade">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>SUS </label> <input type="text" th:field="*{sus}"
+									class="form-control" disabled placeholder="SUS">
+							</div>
+						</div>
+					</div>
+					<h4 class="box-title text-info">
+						<i class="fa fa-history mr-15"></i> Histórico
+					</h4>
+					<hr class="my-15">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Última Revisão</label> <input type="date" th:field="*{ultimaRevisao}"
+									class="form-control" disabled placeholder="Última Revisão">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Próxima Revisão</label> <input type="date" th:field="*{proxRevisao}"
+									class="form-control" disabled placeholder="Próxima Revisão">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.box -->
+
+			<!-- Basic Forms -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h4 class="box-title">Atendimento</h4>
+          <ul class="box-controls pull-right">
+					<li><a class="box-btn-slide" href="#"></a></li>
+			</ul>
+          <h6 class="box-subtitle">Atendimentos do paciente <span th:text="${paciente.nome}"></span></h6>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body" th:object="${paciente}">
+          <div class="row">
+            <div class="col" th:each="atendimento : *{atendimentos}">
+	        	<h4 class="box-title text-info">
+					<i class="fa fa-file-text mr-15"></i> Informações do Atendimento
+				</h4>
+				<hr class="my-15">
+				  <div class="row">
+					<div class="col-12">		
+						<div class="form-group">
+							<h5>Clinica <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:value="${atendimento.clinica}" name="clinica" class="form-control" disabled required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Data do Atendimento <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="date" th:value="${atendimento.dataAtendimento}" name="dataAtendimento" class="form-control" disabled required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Local <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:value="${atendimento.local}" name="local" class="form-control" disabled required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+						<div class="form-group">
+							<h5>Projeto ou Disciplina <span class="text-danger">*</span></h5>
+							<div class="controls">
+								<input type="text" th:value="${atendimento.projDisci}" name="projDisci" class="form-control" disabled required data-validation-required-message="Campo obrigatorio"> </div>
+						</div>
+        			</div>
+        		  </div>
+	          	<h4 class="box-title text-info">
+					<i class="fa fa-address-book-o mr-15"></i> Lesões
+				</h4>
+				<hr class="my-15">
+			  <div class="row">
+					<div class="col-12">
+				<!-- Tabela Lesoes -->
+				<div class="table-responsive">
+					<table th:if="${atendimento.lesoes.size()} != 0" class="table product-overview">
+						<thead>
+							<tr>
+								<th>Imagem</th>
+								<th>Diagnóstico</th>
+								<th>Local</th>
+								<th>Histórico</th>
+								<th>Encaminhamentos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="lesao : ${atendimento.lesoes}">
+								<td><img src="" alt="Sem imagem" width="80"></td>
+								<td th:text="${lesao.hipoteses}"></td>
+								<td th:text="${lesao.regiao}"></td>
+								<td th:text="${lesao.historico}"></td>
+								<td th:text="${lesao.encaminhamentos}"></td>
+								<!-- <td align="center"><a href="javascript:void(0)" class="text-danger" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash text-danger"></i></a></td> -->
+							</tr>			
+						</tbody>
+					</table>
+					<h5 th:if="${atendimento.lesoes.size()} == 0">Atendimento sem lesões cadastradas</h5>
+				</div>
+				<!-- Fim tabela lesoes -->
+				</div>
+				</div>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+      
+    </section>
+    <!-- /.content -->
+	</div>
+	<span th:insert="fragments/controlSidebar"></span>
+	<span th:insert="fragments/estilos :: scripts"></span>
+<!-- 	<script th:inline="javascript">
+		var paciente = [[${paciente.id}]];
+		$(function() {
+			$('#btn-modal-save').click(function() {
+				/*var at = {
+						historico: $('input[name="historico"]').val();
+				}*/
+				$('').load('/tabela....?paciente='+paciente, {teste: '1234'});
+			});
+		});
+	</script> -->
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/estilos :: head">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+
+<body class="hold-transition skin-blue fixed sidebar-mini">
+	<header th:replace="fragments/headerBar :: headerBar"></header>
+	<aside class="main-sidebar">
+		<section th:replace="fragments/sidebar :: sidebar"></section>
+	</aside>
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="mr-auto">
+					<h3 class="page-title">Estatísticas</h3>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i
+										class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item" aria-current="page">Gráficos</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<section class="content">
+			<div class="row">
+				<div class="col-xl-6 col-12">
+					<div class="box">
+						<div class="box-header with-border">
+							<h3 class="box-title">Relação Sexo/Paciente</h3>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<div class="chart">
+						    	<canvas id="ChartSexo" height="396" width="595" style="display: block; width: 595px; height: 396px;"></canvas>
+						    </div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+				</div>
+			</div>
+		</section>
+	</div>
+	<span th:insert="fragments/controlSidebar"></span>
+	<span th:insert="fragments/estilos :: scripts"></span>
+    <script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    window.chartColors = {
+	red: 'rgb(255, 99, 132)',
+	orange: 'rgb(255, 159, 64)',
+	yellow: 'rgb(255, 205, 86)',
+	green: 'rgb(75, 192, 192)',
+	blue: 'rgb(54, 162, 235)',
+	purple: 'rgb(153, 102, 255)',
+	grey: 'rgb(231,233,237)'
+	};
+    var ctx = document.getElementById("ChartSexo").getContext('2d');
+    var infosSexo = /*[[${infosSexo}]]*/ 'default';
+    var ChartDemo = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ["M","F"],
+            datasets: [
+                {
+                    label: "Chart-1",
+                    borderColor: 'rgb(0, 0, 0)',
+                    lineTension: 0,
+                    fill: false,
+                    data: [infosSexo[0].contagem,infosSexo[1].contagem],
+					backgroundColor: [
+						window.chartColors.red,
+						window.chartColors.blue,
+					],
+                },
+            ]
+        },
+        options: {
+            responsive: true,
+        }
+    });
+    /*]]>*/
+    </script>
+</body>
+
+</html>

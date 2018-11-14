@@ -2,10 +2,16 @@
 <html xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<head th:replace="fragments/estilos :: head"></head>
+<head th:replace="fragments/estilos :: head">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
 
 <body class="hold-transition skin-blue sidebar-mini">
-	<header th:replace="fragments/header :: header"></header>
+	<header th:replace="fragments/headerBar :: headerBar"></header>
 	<aside class="main-sidebar">
 		<section th:replace="fragments/sidebar :: sidebar"></section>
 	</aside>
@@ -14,13 +20,13 @@
 		<div class="content-header">
 			<div class="d-flex align-items-center">
 				<div class="mr-auto">
-					<h3 class="page-title">Painel de Controle</h3>
+					<h3 class="page-title" th:text="#{index.subtitulo}"></h3>
 					<div class="d-inline-block align-items-center">
 						<nav>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="#"><i
 										class="mdi mdi-home-outline"></i></a></li>
-								<li class="breadcrumb-item" aria-current="page">Painel</li>
+								<li class="breadcrumb-item" aria-current="page" th:text="#{index.painel}"></li>
 							</ol>
 						</nav>
 					</div>
@@ -33,20 +39,20 @@
 				<div class="col-12">
 					<div class="box">
 						<div class="box-header with-border">
-							<h3 class="box-title">Pacientes Cadastrados</h3>
+							<h3 class="box-title" th:text="#{index.funcao}"></h3>
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
 							<div class="table-responsive">
-								<table id="pacientes" class="table table-bordered table-striped"
+								<table id="example5" class="table table-bordered table-striped"
 									style="width: 100%">
 									<thead>
 										<tr>
-											<th>Nome</th>
-											<th>Nascimento</th>
-											<th>Sexo</th>
-											<th>Estado</th>
-											<th>Saude Geral</th>
+											<th th:text="#{index.table.nome}"></th>
+											<th th:text="#{index.table.nascimento}"></th>
+											<th th:text="#{index.table.sexo}"></th>
+											<th th:text="#{index.table.ultimaRevisao}"></th>
+											<th th:text="#{index.table.proximaRevisao}"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -54,17 +60,17 @@
 											<td th:text="${paciente.nome}"></td>
 											<td th:text="${paciente.nascimento}"></td>
 											<td th:text="${paciente.sexo}"></td>
-											<td th:text="${paciente.estado}"></td>
-											<td th:text="${paciente.saudeGeral}"></td>
+											<td th:text="${paciente.ultimaRevisao}"></td>
+											<td th:text="${paciente.proxRevisao}"></td>
 										</tr>
 									</tbody>
 									<tfoot>
 										<tr>
-											<th>Nome</th>
-											<th>Nascimento</th>
-											<th>Sexo</th>
-											<th>Estado</th>
-											<th>Saude Geral</th>
+											<th th:text="#{index.table.nome}"></th>
+											<th th:text="#{index.table.nascimento}"></th>
+											<th th:text="#{index.table.sexo}"></th>
+											<th th:text="#{index.table.ultimaRevisao}"></th>
+											<th th:text="#{index.table.proximaRevisao}"></th>
 										</tr>
 									</tfoot>
 								</table>
@@ -72,6 +78,7 @@
 						</div>
 						<!-- /.box-body -->
 					</div>
+					<!-- /.box -->
 				</div>
 			</div>
 		</section>

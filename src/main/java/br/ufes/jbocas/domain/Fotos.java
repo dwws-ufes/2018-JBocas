@@ -15,9 +15,9 @@ import lombok.Setter;
 @Table(name = "fotos")
 public class Fotos {
 	@Id
-	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
+	
 	@Column(nullable = false)
 	private String path;
 }

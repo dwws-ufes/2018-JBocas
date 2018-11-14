@@ -27,7 +27,7 @@ public class UsuarioValidator implements Validator {
             errors.rejectValue("username", "Size.userForm.username");
         }*/
         if (userService.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+            errors.rejectValue("username", "Usuário já existente");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");

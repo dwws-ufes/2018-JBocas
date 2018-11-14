@@ -1,16 +1,16 @@
 package br.ufes.jbocas.domain;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -21,24 +21,29 @@ import lombok.Setter;
 @Table(name = "lesao")
 public class Lesao {
 	@Id
-	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column
+	private Long id;
+	
 	private String historico;
-	@Column
+	
+	private String regiao;
+	
 	private String encaminhamentos;
-	@OneToMany	(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn (name="lesaoId")
-	private Set<Hipotese> hipoteses;
-	@OneToMany	(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn (name="lesaoId")
-	private Set<Fotos> fotos;
-	@OneToMany	(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn (name="lesaoId")
-	private Set<Laudo> laudo;
-	@OneToMany	(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn (name="lesaoId")
-	private Set<Macroscopia> macroscopia;
+	
+/*    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "lesao_hipotese",
+            joinColumns = @JoinColumn(name = "lesao_id"),
+            inverseJoinColumns = @JoinColumn(name = "hipotese_id"))*/
+	
+	private String hipoteses;
+	
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Fotos> fotos = new ArrayList<Fotos>();
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	private Laudo laudo;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	private Macroscopia macroscopia;
 	
 }

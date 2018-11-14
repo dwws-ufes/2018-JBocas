@@ -1,7 +1,8 @@
 package br.ufes.jbocas.domain;
 
-import java.util.Date;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,13 +11,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,19 +25,24 @@ import lombok.Setter;
 @Table(name = "atendimento")
 public class Atendimento {
 	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
+	
 	@Column
 	private String clinica;
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "Brazil/East")
-	private Date data;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dataAtendimento = LocalDate.now();
+	
 	@Column
 	private String local;
-	@OneToMany	(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn (name="atendimentoId")
-	private Set<Lesao> lesoes;
-	@OneToMany	(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn (name="atendimentoId")
-	private Set<Requisicao> requisicoes;
+	
+	@Column
+	private String projDisci;
+	
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Lesao> lesoes = new ArrayList<Lesao>();
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	private Requisicao requisicoes;
 	
 }

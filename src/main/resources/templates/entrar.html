@@ -2,7 +2,9 @@
 <html xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	
-<head th:replace="fragments/estilos :: head"></head>
+<head th:insert="fragments/estilos :: head">
+	<meta charset="utf-8">
+</head>
 
 <body class="hold-transition bg-img" style="background-image: url(images/gallery/full/dentista_background.jpg)" data-overlay="4">
 	
@@ -12,16 +14,16 @@
 				<div class="row no-gutters justify-content-md-center">
 					<div class="col-lg-4">
 						<div class="content-top-agile h-p100">
-							<h2>Nucleo de Diagnostico Bucal</h2>
+							<h2>Núcleo de Diagnóstico Bucal</h2>
 							<p class="text-white">Entre para iniciar a sua sessao</p>
 						</div>				
 					</div>
 					<div class="col-lg-5 col-md-5 col-12">
 						<div class="p-40 bg-white content-bottom h-p100">
 							<div th:if="${param.error}">
-								<div class="alert alert-info">Usuario invalido!</div>
+								<div class="alert alert-info">Usuário inválido!</div>
 							</div>
-							<form action="/entrar" method="post" class="form-element">
+							<form th:action="@{/entrar}" method="post" class="form-element">
 								<div class="form-group">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
@@ -57,7 +59,6 @@
 									</div>
 									<!-- /.col -->
 								  </div>
-								  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 							</form>		
 
 							<div class="text-center">

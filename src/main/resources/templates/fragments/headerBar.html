@@ -2,7 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<header class="main-header" th:fragment="header">
+<header class="main-header" th:fragment="headerBar">
     <!-- Logo -->
     <a th:href="@{/}" class="logo">
       <!-- mini logo -->
@@ -16,9 +16,9 @@
 	  	  <span class="dark-logo"><img th:src="@{/images/logo/NDB.png}" alt="logo"></span>
 	  </div>
     </a>
-    <!-- Header Navbar -->
+     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
+      <!-- Sidebar toggle button -->
 	  <div>
 		  <a th:href="@{#}" class="sidebar-toggle" data-toggle="push-menu" role="button">
 			<span class="sr-only">Toggle navigation</span>
@@ -33,23 +33,23 @@
                 <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
 			</form>
           </li>	
-		  <!-- User Account-->
+		  <!-- User Account
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="/images/avatar/7.jpg" th:src="@{/images/avatar/7.jpg}" class="user-image rounded-circle" alt="User Image">
+              <img th:src="@{/images/avatar/7.jpg}" class="user-image rounded-circle" alt="User Image">
             </a>
             <ul class="dropdown-menu animated flipInY">
-              <!-- User image -->
+              User image
               <li class="user-header bg-img" style="background-image: url(/images/user-info.jpg)" data-overlay="3">
 				  <div class="flexbox align-self-center">					  
-				  	<img src="/images/avatar/7.jpg" th:src="@{/images/avatar/7.jpg}" class="float-left rounded-circle" alt="User Image">					  
+				  	<img  th:src="@{/images/avatar/7.jpg}" class="float-left rounded-circle" alt="User Image">					  
 					<h4 class="user-name align-self-center">
 					  <span>Samuel Brus</span>
 					  <small>samuel@gmail.com</small>
 					</h4>
 				  </div>
               </li>
-              <!-- Menu Body -->
+              Menu Body
               <li class="user-body">
 				    <a class="dropdown-item" href="javascript:void(0)"><i class="ion ion-person"></i> My Profile</a>
 					<a class="dropdown-item" href="javascript:void(0)"><i class="ion ion-bag"></i> My Balance</a>
@@ -64,7 +64,7 @@
             </ul>
           </li>		
 		  
-          <!-- Messages -->
+          Messages
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="mdi mdi-email"></i>
@@ -85,9 +85,9 @@
 				</div>
 			  </li>
               <li>
-                <!-- inner menu: contains the actual data -->
+                inner menu: contains the actual data
                 <ul class="menu sm-scrol">
-                  <li><!-- start message -->
+                  <li>start message
                     <a href="#">
                       <div class="pull-left">
                         <img th:src="@{/images/user2-160x160.jpg}" class="rounded-circle" alt="User Image">
@@ -101,7 +101,7 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end message -->
+                  end message
                   <li>
                     <a href="#">
                       <div class="pull-left">
@@ -164,7 +164,7 @@
 				  <a href="#" class="text-white bg-info">See all e-Mails</a></li>
             </ul>
           </li>
-          <!-- Notifications -->
+          Notifications
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="mdi mdi-bell"></i>
@@ -186,7 +186,7 @@
 			  </li>
 				
               <li>
-                <!-- inner menu: contains the actual data -->
+                inner menu: contains the actual data
                 <ul class="menu sm-scrol">
                   <li>
                     <a href="#">
@@ -228,7 +228,7 @@
               <li class="footer"><a href="#" class="text-white bg-danger">View all</a></li>
             </ul>
           </li>
-          <!-- Tasks-->
+          Tasks
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="mdi mdi-bulletin-board"></i>
@@ -250,9 +250,9 @@
 			  </li>
 				
               <li>
-                <!-- inner menu: contains the actual data -->
+                inner menu: contains the actual data
                 <ul class="menu sm-scrol">
-                  <li><!-- Task item -->
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Lorem ipsum dolor sit amet
@@ -266,8 +266,8 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
+                  end task item
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Vestibulum nec ligula
@@ -281,8 +281,8 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
+                  end task item
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Donec id leo ut ipsum
@@ -296,8 +296,8 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
+                  end task item
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Praesent vitae tellus
@@ -311,8 +311,8 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
+                  end task item
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Nam varius sapien
@@ -326,8 +326,8 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
+                  end task item
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Nunc fringilla
@@ -341,19 +341,20 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
+                  end task item
                 </ul>
               </li>
               <li class="footer"><a href="#" class="text-white bg-warning">View all tasks</a></li>
             </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
+          Control Sidebar Toggle Button
           <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-cog fa-spin"></i></a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </nav>
   </header>
+  </div>
   
   </html>

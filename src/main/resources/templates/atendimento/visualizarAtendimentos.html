@@ -20,13 +20,13 @@
 		<div class="content-header">
 			<div class="d-flex align-items-center">
 				<div class="mr-auto">
-					<h3 class="page-title">Pacientes</h3>
+					<h3 class="page-title">Atendimentos</h3>
 					<div class="d-inline-block align-items-center">
 						<nav>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="#"><i
 										class="mdi mdi-home-outline"></i></a></li>
-								<li class="breadcrumb-item" aria-current="page">Visualizar Pacientes</li>
+								<li class="breadcrumb-item" aria-current="page">Visualizar Atendimentos</li>
 							</ol>
 						</nav>
 					</div>
@@ -39,45 +39,39 @@
 				<div class="col-12">
 					<div class="box">
 						<div class="box-header with-border">
-							<h3 class="box-title">Pacientes Cadastrados</h3>
+							<h3 class="box-title">Atendimentos Realizados</h3>
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
 							<div class="table-responsive">
-								<table id="example5" class="table table-bordered table-striped"
-									style="width: 100%">
+							<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+								<table id="example5" class="table table-bordered table-hover display nowrap margin-top-10 w-p100 dataTable" role="grid" aria-describedby="example_info">
 									<thead>
 										<tr>
-											<th>Nome</th>
-											<th>CPF</th>
-											<th>Idade</th>
-											<th>Sexo</th>
-											<th>Última Revisão</th>
-											<th>Próxima Revisão</th>
+											<th>Clinica</th>
+											<th>Data do Atendimento</th>
+											<th>Local</th>
+											<!-- <th>Projeto ou Disicplina</th> -->
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="paciente : ${pacientes}">
-											<td ><a th:href="@{/paciente/visualizarPaciente(paciente=${paciente.cpf})}" th:text="${paciente.nome}"></a></td>
-											<td th:text="${paciente.cpf}"></td>
-											<td th:text="${paciente.idade}"></td>
-											<td th:text="${paciente.sexo}"></td>
-											<td th:text="${paciente.ultimaRevisao}"></td>
-											<td th:text="${paciente.proxRevisao}"></td>
-											<td ><a th:href="@{/paciente/deletar(paciente=${paciente.cpf})}">Deletar</a></td>
+										<tr th:each="atendimento : ${atendimentos}">
+											<td th:text="${atendimento.clinica}"></td>
+											<td th:text="${atendimento.dataAtendimento}"></td>
+											<td th:text="${atendimento.local}"></td>
+											<!-- <td th:text="${atendimento.projetoDisci}"></td> -->
 										</tr>
 									</tbody>
 									<tfoot>
 										<tr>
-											<th>Nome</th>
-											<th>CPF</th>
-											<th>Idade</th>
-											<th>Sexo</th>
-											<th>Última Revisão</th>
-											<th>Próxima Revisão</th>
+											<th>Clinica</th>
+											<th>Data do Atendimento</th>
+											<th>Local</th>
+											<!-- <th>Projeto ou Disicplina</th> -->
 										</tr>
 									</tfoot>
 								</table>
+								</div>
 							</div>
 						</div>
 						<!-- /.box-body -->
