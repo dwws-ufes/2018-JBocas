@@ -72,6 +72,21 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Cidade </label> <input type="text" th:field="*{cidade}"
+									class="form-control" disabled placeholder="Cidade">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Descrição </label>
+								<!-- <input type="text" th:value="${comment}" name="descricao" class="form-control" disabled placeholder="Descricao"> </div> -->
+								<textarea th:name="descricao" class="form-control" disabled th:placeholder="${comment}"></textarea>
+							</div>
+						</div>
+					</div>
 					<h4 class="box-title text-info">
 						<i class="fa fa-history mr-15"></i> Histórico
 					</h4>
